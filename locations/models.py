@@ -14,6 +14,3 @@ class Location(models.Model):
     def __str__(self):
         return f'{self.name}'
     
-def create_location(sender, instance, created, **kwargs):
-    if created:
-        Location.objects.create(name=instance)
