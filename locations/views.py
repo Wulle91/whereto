@@ -6,7 +6,7 @@ from .models import Location
 from .serializers import LocationSerializer
 
 
-class LocationList(generics.ListAPIView):
+class LocationList(generics.ListCreateAPIView):
     """
     List all profiles.
     No create view as profile creation is handled by django signals.
@@ -26,11 +26,11 @@ class LocationList(generics.ListAPIView):
         
     ]
     
-class LocationDetail(generics.RetrieveUpdateAPIView):
+class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
     """
     Retrieve or update a profile if you're the owner.
     """
-    permission_classes = [IsOwnerOrReadOnly]
+    
     queryset = Location.objects.annotate(
         posts_count=Count('name', distinct=True),
         #followers_count=Count('name__followed', distinct=True),

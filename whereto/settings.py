@@ -65,7 +65,7 @@ ALLOWED_HOSTS = [
     'again-moments-d2bdd3c5ef83.herokuapp.com',
     'localhost',
     '8000-wulle91-drfapi-nlp38vf1ucy.ws-eu100.gitpod.io',
-    '8000-wulle91-whereto-08ob018mlp8.ws-eu101.gitpod.io',
+    '8000-wulle91-whereto-k8nq0nid4o3.ws-eu101.gitpod.io',
 ]
 
 
