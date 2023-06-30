@@ -19,11 +19,12 @@ class LocationList(generics.ListCreateAPIView):
         filters.OrderingFilter,
         DjangoFilterBackend,
     ]
+    search_fields = [
+        'name',
+    ]
     ordering_fields = [
         'posts_count',
-        'location'
-        'followers_count',
-        
+        'name'
     ]
     
 class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
