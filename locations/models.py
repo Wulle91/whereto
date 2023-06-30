@@ -7,10 +7,9 @@ class Location(models.Model):
     address = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     image_url = models.URLField(blank=True)
-    
+
     class Meta:
         ordering = ['-created_at']
 
     def __str__(self):
         return f'{self.name}'
-    

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from .models import Post
+from locations.models import Location
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -18,13 +19,23 @@ class PostListViewTests(APITestCase):
 
     def test_logged_in_user_can_create_post(self):
         self.client.login(username='adam', password='pass')
-        response = self.client.post('/posts/', {'title': 'a title', 'name': 'luigis'})
+        response = self.client.post(
+            '/posts/', {'title': 'a title', 'name': 'luigis'})
         count = Post.objects.count()
         self.assertEqual(count, 1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
+    def test_logged_in_user_can_create_location(self):
+        self.client.login(username='adam', password='pass')
+        response = self.client.post(
+            '/posts/', {'title': 'a title', 'name': 'luigis'})
+        count = Location.objects.count()
+        self.assertEqual(count, 1)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
     def test_user_not_logged_in_cant_create_post(self):
-        response = self.client.post('/posts/', {'title': 'a title', 'name': 'luigis'})
+        response = self.client.post(
+            '/posts/', {'title': 'a title', 'name': 'luigis'})
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
 
@@ -36,7 +47,8 @@ class PostDetailViewTests(APITestCase):
             owner=adam, title='a title', name='luigis', content='adams content'
         )
         Post.objects.create(
-            owner=brian, title='another title', name='maroks', content='brians content'
+            owner=brian, title='another title',
+            name='maroks', content='brians content'
         )
 
     def test_can_retrieve_post_using_valid_id(self):
@@ -51,7 +63,8 @@ class PostDetailViewTests(APITestCase):
 
     def test_user_can_update_own_post(self):
         self.client.login(username='adam', password='pass')
-        response = self.client.put('/posts/1/', {'title': 'a new title', 'name': 'luigis'})
+        response = self.client.put(
+            '/posts/1/', {'title': 'a new title', 'name': 'luigis'})
         post = Post.objects.filter(pk=1).first()
         self.assertEqual(post.title, 'a new title')
         self.assertEqual(response.status_code, status.HTTP_200_OK)

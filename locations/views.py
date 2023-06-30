@@ -27,14 +27,12 @@ class LocationList(generics.ListCreateAPIView):
         'posts_count',
         'name'
     ]
-    
+
+
 class LocationDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Retrieve or update a profile if you're the owner.
-    """
-    
+
     queryset = Location.objects.annotate(
         posts_count=Count('name', distinct=True),
-        #followers_count=Count('name__followed', distinct=True),
+        # followers_count=Count('name__followed', distinct=True),
     ).order_by('-created_at')
     serializer_class = LocationSerializer

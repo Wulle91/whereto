@@ -11,4 +11,3 @@ def create_location(sender, instance, created, **kwargs):
             Location.objects.get(name=instance.name)
         except Location.DoesNotExist:
             Location.objects.create(name=instance.name)
-            

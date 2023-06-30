@@ -10,14 +10,14 @@ class FollowerSerializer(serializers.ModelSerializer):
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     followed_name = serializers.ReadOnlyField(source='followed.username')
-    followed_location_name = serializers.ReadOnlyField(source='followed_location.name')
-
+    followed_location_name = serializers.ReadOnlyField(
+        source='followed_location.name')
 
     def get_followed_location(self, obj):
         if obj.followed_location:
             return obj.followed_location.name
         return None
-    
+
     class Meta:
         model = Follower
         fields = [
