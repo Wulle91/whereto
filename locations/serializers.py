@@ -4,6 +4,7 @@ from followers.models import Follower
 
 
 class LocationSerializer(serializers.ModelSerializer):
+    id = serializers.ReadOnlyField()
     posts_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     posts_count = serializers.ReadOnlyField()
@@ -25,6 +26,6 @@ class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = [
-            'name', 'address', 'followers_count', 'posts_count',
+            'id', 'name', 'address', 'followers_count', 'posts_count',
             'image_url', 'is_following'
         ]

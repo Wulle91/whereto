@@ -12,7 +12,7 @@ class Follower(models.Model):
     )
     followed_location = models.ForeignKey(
         Location, related_name='followers',
-        on_delete=models.CASCADE, default=None
+        on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
