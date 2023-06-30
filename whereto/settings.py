@@ -64,7 +64,7 @@ DEBUG = 'DEV' in os.environ
 ALLOWED_HOSTS = [
     'again-moments-d2bdd3c5ef83.herokuapp.com',
     'localhost',
-    '8000-wulle91-drfapi-nlp38vf1ucy.ws-eu100.gitpod.io',
+    'https://whereto-backend-2f902e48d670.herokuapp.com',
     '8000-wulle91-whereto-li8el6zp344.ws-eu101.gitpod.io',
 ]
 
